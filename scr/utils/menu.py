@@ -28,3 +28,6 @@ class NewMenu:
                 self.current_option_index += 1
             elif key == "KEY_UP":
                 self.current_option_index -= 1
+            elif key == "KEY_ENTER":
+                return self.current_option_index
+                playing = False
