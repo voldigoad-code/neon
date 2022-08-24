@@ -1,5 +1,4 @@
 import curses
-from curses import wrapper
 from curses.textpad import Textbox, rectangle
 
 class NewMenu:
@@ -25,9 +24,15 @@ class NewMenu:
 
             key = self.stdscr.getkey()
             if key == "KEY_DOWN":
-                self.current_option_index += 1
+                if self.current_option_index + 1 > len(self.options_list):
+                    self.current_option_index = 0
+                else:
+                    self.current_option_index += 1
             elif key == "KEY_UP":
-                self.current_option_index -= 1
-            elif key == "KEY_ENTER":
+                if self.current_option_index - 1 < 0:
+                    self.current_option_index = len(self.options_list)
+                else:
+                    self.current_option_index -= 1
+            elif key == "\n" :
                 playing = False
                 return self.current_option_index
